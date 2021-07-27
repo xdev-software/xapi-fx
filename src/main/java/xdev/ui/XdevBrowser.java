@@ -62,6 +62,8 @@ public class XdevBrowser extends XdevJFXPanel
 	
 	/**
 	 * Returns the web view node which is used by this browser.
+	 * 
+	 * @return the web view node which is used by this browser.
 	 */
 	public WebView getWebView()
 	{
@@ -71,6 +73,9 @@ public class XdevBrowser extends XdevJFXPanel
 	
 	/**
 	 * Returns the web engine which is used by this browser.
+	 * 
+	 * @return the web engine which is used by this browser.
+	 * 
 	 */
 	public WebEngine getWebEngine()
 	{
@@ -80,6 +85,9 @@ public class XdevBrowser extends XdevJFXPanel
 	
 	/**
 	 * Returns the history of this browser.
+	 * 
+	 * @return the history of this browser.
+	 * 
 	 */
 	public WebHistory getWebHistory()
 	{
@@ -106,6 +114,9 @@ public class XdevBrowser extends XdevJFXPanel
 	 * cannot be reached via a URL (for example, the HTML text may have come
 	 * from a database). As with {@link #load(String)}, this method is
 	 * asynchronous.
+	 * 
+	 * @param html content to load
+	 * 
 	 */
 	public void loadContent(final String html)
 	{

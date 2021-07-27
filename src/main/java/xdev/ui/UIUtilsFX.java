@@ -34,7 +34,7 @@ import javafx.application.Platform;
  *
  * @author XDEV Software
  */
-public class UIUtilsFX
+public final class UIUtilsFX
 {
 	
 	/**
@@ -48,6 +48,8 @@ public class UIUtilsFX
 	/**
 	 * Ensures that the runnable is executed in the Java FX thread.
 	 *
+	 * @param runnable to run on Java FX thread.
+	 * 
 	 * @since 5.0
 	 */
 	public static void runInJFXThread(final Runnable runnable)
