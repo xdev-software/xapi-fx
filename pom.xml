@@ -17,7 +17,7 @@
 		<connection>https://github.com/xdev-software/xapi-fx.git</connection>
 	</scm>
 
-	<inceptionYear>2021</inceptionYear>
+	<inceptionYear>2003</inceptionYear>
 
 	<organization>
 		<name>XDEV Software</name>
@@ -85,8 +85,16 @@
 	</distributionManagement>
 	<dependencies>
 
-		<!-- There are no JavaFX dependencies here, because with Java8 JavaFX has 
-			to come with the JDK. There are no maven dependencies we can use. -->
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-swing</artifactId>
+			<version>16</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-web</artifactId>
+			<version>16</version>
+		</dependency>
 
 	</dependencies>
 
@@ -131,17 +139,12 @@
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.0.0-M5</version>
-				<configuration>
-					<excludedGroups>
-						xdev.test.UITest
-					</excludedGroups>
-				</configuration>
 			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>3.0.0-M3</version>
+				<version>3.0.0</version>
 				<executions>
 					<execution>
 						<id>enforce-maven</id>
@@ -191,10 +194,7 @@
 						</goals>
 						<phase>process-sources</phase>
 						<configuration>
-							<roots>
-								<root>src/main/java</root>
-								<root>src/test/java</root>
-							</roots>
+							<canUpdateCopyright>true</canUpdateCopyright>
 						</configuration>
 					</execution>
 				</executions>
@@ -232,7 +232,7 @@
 						</goals>
 					</execution>
 				</executions>
-      </plugin>
+			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

@@ -4,7 +4,7 @@ package xdev.ui;
  * #%L
  * XDEV Application Framework JavaFX
  * %%
- * Copyright (C) 2021 XDEV Software
+ * Copyright (C) 2003 - 2021 XDEV Software
  * %%
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as
