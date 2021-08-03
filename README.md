@@ -3,26 +3,9 @@
 [![javadoc](https://javadoc.io/badge2/com.xdev-software/xapi-fx/javadoc.svg)](https://javadoc.io/doc/com.xdev-software/xapi-fx) 
 
 # XDEV Application Framework JavaFX
-The XDEV Application Framework is the core of every application developed with XDEV-IDE. It provides a basic architecture and infrastructure for graphic Swing interfaces and database applications and facilitates many tasks that every Java programmer usually has to take care of himself, including: 
+This is the JavaFX part of the XDEV Application Framework. All other components are here: https://github.com/xdev-software/xapi
 
- - JDBC and SQL programming
- - transaction management
- - data encryption
- - protection against SQL injection
- - connection pooling
- - processing of query results (result sets)
- - lazy loading
- - data binding
- - data validation. 
-
-With version 4, the framework provides a concept for automated data record locking. The framework also offers numerous classes and methods that simplify access to databases, files, RAM, interfaces, external applications, and web services. 
-
-The framework can be used with every Java IDE. Without the XDEV IDE, however, the wizards and RAD-tooling of the XDEV IDE (GUI Builder, VT Editor, etc.) are missing for the best RAD-development experience. 
-
-## XDEV-IDE
-XDEV(-IDE) is a visual Java development environment for fast and easy application development (RAD - Rapid Application Development). XDEV differs from other Java IDEs such as Eclipse or NetBeans, focusing on programming through a far-reaching RAD concept. The IDE's main components are a Swing GUI builder, the XDEV Application Framework, and numerous drag-and-drop tools and wizards with which the functions of the framework can be integrated.
-
-The XDEV-IDE was license-free up to version 4 inclusive and is available for Windows, Linux and macOS. From version 5, the previously proprietary licensed additional modules are included in the IDE and the license of the entire product has been converted to a paid subscription model. The XDEV Application Framework, which represents the core of the RAD concept of XDEV and is part of every XDEV application, was released as open-source in 2008.
+This repository has a branch for every supported Java LTS version. Make sure to get the version the matches your Java runtime.
 
 ## Contributing
 
