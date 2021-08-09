@@ -5,7 +5,7 @@
 
 	<groupId>com.xdev-software</groupId>
 	<artifactId>xapi-fx</artifactId>
-	<version>1.0.0_java8-SNAPSHOT</version>
+	<version>1.0.0_${version.suffix}-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>XDEV Application Framework JavaFX</name>
@@ -41,12 +41,11 @@
 	</licenses>
 
 	<properties>
-		<javaVersion>1.8</javaVersion>
-
+		<java.compiler.version>1.8</java.compiler.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<license.licenseName>lgpl_v3</license.licenseName>
-		<maven.compiler.source>${javaVersion}</maven.compiler.source>
-		<maven.compiler.target>${javaVersion}</maven.compiler.target>
+		<maven.compiler.source>${java.compiler.version}</maven.compiler.source>
+		<maven.compiler.target>${java.compiler.version}</maven.compiler.target>
 	</properties>
 
 	<repositories>
@@ -73,30 +72,8 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>
-	<dependencies>
 
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-swing</artifactId>
-			<version>17-ea+16</version>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-web</artifactId>
-			<version>17-ea+16</version>
-		</dependency>
 
-	</dependencies>
 
 	<build>
 		<plugins>
@@ -157,8 +134,12 @@
 									<version>3.5.4</version>
 								</requireMavenVersion>
 								<requireJavaVersion>
-									<version>${javaVersion}</version>
+									<version>${java.runtime.version}</version>
 								</requireJavaVersion>
+								<requireActiveProfile>
+									<profiles>java8,java11,java17</profiles>
+									<all>false</all>
+								</requireActiveProfile>
 							</rules>
 						</configuration>
 					</execution>
@@ -170,8 +151,8 @@
 				<version>3.8.1</version>
 				<configuration>
 					<compilerId>eclipse</compilerId>
-					<source>${javaVersion}</source>
-					<target>${javaVersion}</target>
+					<source>${java.compiler.version}</source>
+					<target>${java.compiler.version}</target>
 				</configuration>
 				<dependencies>
 					<dependency>
@@ -269,8 +250,79 @@
 	</build>
 
 	<profiles>
+
+		<profile>
+			<id>java8</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<java.runtime.version>[1.8,9)</java.runtime.version>
+				<version.suffix>java8</version.suffix>
+			</properties>
+
+			<dependencies>
+				<!-- There are no JavaFX dependencies here, because with Java8 JavaFX 
+					has to come with the JDK. There are no maven dependencies we can use. -->
+			</dependencies>
+		</profile>
+
+		<profile>
+			<id>java11</id>
+			<properties>
+				<java.runtime.version>[11,12)</java.runtime.version>
+				<version.suffix>java11</version.suffix>
+			</properties>
+
+			<dependencies>
+				<dependency>
+					<groupId>org.openjfx</groupId>
+					<artifactId>javafx-swing</artifactId>
+					<version>11.0.2</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openjfx</groupId>
+					<artifactId>javafx-web</artifactId>
+					<version>11.0.2</version>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<profile>
+			<id>java17</id>
+			<properties>
+				<java.runtime.version>[17,18)</java.runtime.version>
+				<version.suffix>java17</version.suffix>
+			</properties>
+
+			<dependencies>
+				<dependency>
+					<groupId>org.openjfx</groupId>
+					<artifactId>javafx-swing</artifactId>
+					<version>17-ea+16</version>
+				</dependency>
+				<dependency>
+					<groupId>org.openjfx</groupId>
+					<artifactId>javafx-web</artifactId>
+					<version>17-ea+16</version>
+				</dependency>
+			</dependencies>
+		</profile>
+
 		<profile>
 			<id>ossrh</id>
+
+			<distributionManagement>
+				<snapshotRepository>
+					<id>ossrh</id>
+					<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+				</snapshotRepository>
+				<repository>
+					<id>ossrh</id>
+					<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+				</repository>
+			</distributionManagement>
+
 			<build>
 				<plugins>
 					<plugin>
