@@ -60,7 +60,11 @@ jobs:
           echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && mvn -B clean verify"
           exit 1
         fi
-
+        
+    - uses: actions/upload-artifact@v2
+      with:
+        name: jars-lts-${{ matrix.java }}
+        path: target/*.jar
       
   build_xdev_ide:
     runs-on: ubuntu-latest
@@ -86,5 +90,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B clean verify -Pjava8,xdev-ide
       
-    - name: Debug
-      run: ls -lha target
+    - uses: actions/upload-artifact@v2
+      with:
+        name: jars-xdev-ide
+        path: target/*.jar
