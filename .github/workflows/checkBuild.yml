@@ -22,7 +22,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       
-    - name: Set up JDK 8
+    - name: Set up JDK
       uses: actions/setup-java@v2
       with:
         distribution: 'zulu'
@@ -38,7 +38,7 @@ jobs:
           ${{ runner.os }}-maven-
       
     - name: Build with Maven
-      run: mvn -B clean verify -P ${{ matrix.java }}
+      run: mvn -B clean verify -P java${{ matrix.java }}
       
     - name: Debug
       run: ls -lha target
@@ -68,7 +68,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       
-    - name: Set up JDK 8
+    - name: Set up JDK
       uses: actions/setup-java@v2
       with:
         distribution: 'zulu'
