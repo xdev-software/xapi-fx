@@ -40,9 +40,6 @@ jobs:
     - name: Build with Maven
       run: mvn -B clean verify -P java${{ matrix.java }}
       
-    - name: Debug
-      run: ls -lha target
-      
     - name: Check for uncommited changes
       run: |
         if [[ "$(git status --porcelain)" != "" ]]; then
