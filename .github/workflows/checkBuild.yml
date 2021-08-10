@@ -49,7 +49,7 @@ jobs:
     - name: Determine build profile java 
       id: determine_bp_java
       run: |
-        echo "::set-output name=version::$(echo ${{ matrix.java }} | | sed 's/[^0-9]*//g')"
+        echo "::set-output name=version::$(echo ${{ matrix.java }} | sed 's/[^0-9]*//g')"
       
     - name: Build with Maven
       run: mvn -B clean verify -P java${{ steps.determine_bp_java.outputs.version }}
