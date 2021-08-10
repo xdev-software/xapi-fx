@@ -9,7 +9,14 @@ jobs:
 
     strategy:
       matrix:
-        java: [8, 11] #, 17]
+        java: [11, 17-ea]
+        java-package: [jdk]
+        distribution: [adopt]
+        include: 
+          # When building Java 8 we need JavaFX on JDK basis
+          - java: 8
+            java-package: jdk+fx
+            distribution: zulu
 
     steps:
     - uses: actions/checkout@v2
@@ -17,17 +24,24 @@ jobs:
     - name: Set up JDK and configure for ossrh
       uses: actions/setup-java@v2
       with: # running setup-java again overwrites the settings.xml
-        distribution: 'zulu'
+        distribution: ${{ matrix.distribution }}
         java-version: ${{ matrix.java }}
-        java-package: jdk+fx
+        java-package: ${{ matrix.java-package }}
         server-id: ossrh
         server-username: MAVEN_CENTRAL_USERNAME
         server-password: MAVEN_CENTRAL_TOKEN
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
         gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+        
+    # Required to map 17-ea to 17
+    # cut away early access and other stuff
+    - name: Determine build profile java 
+      id: determine_bp_java
+      run: |
+        echo "::set-output name=version::$(echo ${{ matrix.java }} | sed 's/[^0-9]*//g')"
 
     - name: Publish to Apache Maven Central
-      run: mvn -B deploy -Possrh,java${{ matrix.java }}
+      run: mvn -B deploy -Possrh,java${{ steps.determine_bp_java.outputs.version }}
       env:
         MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
         MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
