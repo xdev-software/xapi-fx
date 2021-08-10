@@ -20,8 +20,8 @@ jobs:
         java: [11, 17-ea]
         java-package: [jdk]
         distribution: [adopt]
-        # When building Java 8 we need JavaFX on JDK basis
         include: 
+          # When building Java 8 we need JavaFX on JDK basis
           - java: 8
             java-package: jdk+fx
             distribution: zulu
@@ -43,9 +43,16 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
+          
+    # Required to map 17-ea to 17
+    # cut away early access and other stuff
+    - name: Determine build profile java 
+      id: determine_bp_java
+      run: |
+        echo "::set-output name=version::$(echo ${{ matrix.java }} | | sed 's/[^0-9]*//g')"
       
     - name: Build with Maven
-      run: mvn -B clean verify -P java${{ matrix.java }}
+      run: mvn -B clean verify -P java${{ steps.determine_bp_java.outputs.version }}
       
     - name: Check for uncommited changes
       run: |
