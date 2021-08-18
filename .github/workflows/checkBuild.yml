@@ -1,0 +1,100 @@
+name: Check Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ develop ]
+    paths-ignore: 
+      - '**.md'
+  pull_request:
+    branches: [ develop ]
+    paths-ignore: 
+      - '**.md'
+
+jobs:
+  build_lts:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        java: [11] #, 17-ea]
+        java-package: [jdk]
+        distribution: [adopt]
+        include: 
+          # When building Java 8 we need JavaFX on JDK basis
+          - java: 8
+            java-package: jdk+fx
+            distribution: zulu
+
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        distribution: ${{ matrix.distribution }}
+        java-version: ${{ matrix.java }}
+        java-package: ${{ matrix.java-package }}
+
+    - name: Cache local Maven repository
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+      
+    - name: Build with Maven
+      run: mvn -B clean verify -P java${{ matrix.java }}
+      
+    - name: Check for uncommited changes
+      run: |
+        if [[ "$(git status --porcelain)" != "" ]]; then
+          echo ----------------------------------------
+          echo git status
+          echo ----------------------------------------
+          git status
+          echo ----------------------------------------
+          echo git diff
+          echo ----------------------------------------
+          git diff
+          echo ----------------------------------------
+          echo Troubleshooting
+          echo ----------------------------------------
+          echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && mvn -B clean verify"
+          exit 1
+        fi
+        
+    - uses: actions/upload-artifact@v2
+      with:
+        name: jars-lts-${{ matrix.java }}
+        path: target/*.jar
+      
+  build_xdev_ide:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'zulu'
+        java-version: '8'
+        java-package: jdk+fx
+
+    - name: Cache local Maven repository
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+      
+    - name: Build with Maven
+      run: mvn -B clean verify -Pjava8,xdev-ide
+      
+    - uses: actions/upload-artifact@v2
+      with:
+        name: jars-xdev-ide
+        path: target/*.jar
