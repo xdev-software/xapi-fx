@@ -16,14 +16,7 @@ jobs:
         distribution: 'zulu'
         java-version: '8'
         java-package: jdk+fx
-
-    - name: Cache local Maven repository
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
+        cache: 'maven'
       
     - name: Build with Maven
       run: mvn -B clean verify -Pjava8
@@ -107,7 +100,7 @@ jobs:
       matrix:
         java: [11] #, 17]
         java-package: [jdk]
-        distribution: [adopt]
+        distribution: [temurin]
         include: 
           # When building Java 8 we need JavaFX on JDK basis
           - java: 8
@@ -158,17 +151,9 @@ jobs:
     - name: Set up JDK 11
       uses: actions/setup-java@v2
       with:
-        distribution: 'adopt'
+        distribution: 'temurin'
         java-version: '11'
         java-package: jdk
-
-    - name: Restore - Maven Cache
-      uses: actions/cache@v1
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-:  
 
     - name: Build dependencies/licenses files
       run: mvn -B project-info-reports:dependencies -Pjava8
