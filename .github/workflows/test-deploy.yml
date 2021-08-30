@@ -11,7 +11,7 @@ jobs:
       matrix:
         java: [11] #, 17-ea]
         java-package: [jdk]
-        distribution: [adopt]
+        distribution: [temurin]
         include: 
           # When building Java 8 we need JavaFX on JDK basis
           - java: 8
