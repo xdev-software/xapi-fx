@@ -17,7 +17,7 @@ jobs:
     
     strategy:
       matrix:
-        java: [11] #, 17-ea]
+        java: [11, 17]
         java-package: [jdk]
         distribution: [temurin]
         include: 
@@ -61,26 +61,4 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: jars-lts-${{ matrix.java }}
-        path: target/*.jar
-      
-  build_xdev_ide:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v2
-      
-    - name: Set up JDK
-      uses: actions/setup-java@v2
-      with:
-        distribution: 'zulu'
-        java-version: '8'
-        java-package: jdk+fx
-        cache: 'maven'
-      
-    - name: Build with Maven
-      run: mvn -B clean verify -Pjava8,xdev-ide
-      
-    - uses: actions/upload-artifact@v2
-      with:
-        name: jars-xdev-ide
         path: target/*.jar
