@@ -3,7 +3,7 @@
 [![javadoc](https://javadoc.io/badge2/com.xdev-software/xapi-fx/javadoc.svg)](https://javadoc.io/doc/com.xdev-software/xapi-fx) 
 
 # XDEV Application Framework JavaFX
-This is the JavaFX part of the XDEV Application Framework. All other components are here: https://github.com/xdev-software/xapi
+This is the JavaFX part of the XDEV Application Framework. All other components are in https://github.com/xdev-software/xapi
 
 This repository has a branch for every supported Java LTS version. Make sure to get the version the matches your Java runtime.
 
