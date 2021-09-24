@@ -5,7 +5,7 @@
 
 	<groupId>com.xdev-software</groupId>
 	<artifactId>xapi-fx</artifactId>
-	<version>1.0.0_${version.suffix}-SNAPSHOT</version>
+	<version>6.0.0-${version.suffix}-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>XDEV Application Framework JavaFX</name>
@@ -72,11 +72,7 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-
-
-
 	<build>
-
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -192,7 +188,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.3.0</version>
+				<version>3.3.1</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -232,7 +228,7 @@
 					<dependency>
 						<groupId>com.puppycrawl.tools</groupId>
 						<artifactId>checkstyle</artifactId>
-						<version>8.44</version>
+						<version>8.45.1</version>
 					</dependency>
 				</dependencies>
 
@@ -255,7 +251,37 @@
 				</executions>
 			</plugin>
 
-
+			<!--
+				This is required for installing/deploying profiles with dependencies.
+				Otherwise the dependencies are not resolved correctly in the implementing project
+			 -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>flatten-maven-plugin</artifactId>
+				<version>1.2.7</version>
+				<configuration>
+					<updatePomFile>true</updatePomFile>
+					<!-- This does the magic -->
+					<embedBuildProfileDependencies>true</embedBuildProfileDependencies>
+					<flattenMode>ossrh</flattenMode>
+				</configuration>
+				<executions>
+					<execution>
+						<id>flatten</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>flatten</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>flatten.clean</id>
+						<phase>clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
@@ -309,12 +335,12 @@
 				<dependency>
 					<groupId>org.openjfx</groupId>
 					<artifactId>javafx-swing</artifactId>
-					<version>17-ea+16</version>
+					<version>17</version>
 				</dependency>
 				<dependency>
 					<groupId>org.openjfx</groupId>
 					<artifactId>javafx-web</artifactId>
-					<version>17-ea+16</version>
+					<version>17</version>
 				</dependency>
 			</dependencies>
 		</profile>
