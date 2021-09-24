@@ -221,7 +221,7 @@ jobs:
         echo "Set version with suffix"
         read_version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
         parts=(${read_version//-/ })
-        mvn versions:set -DnewVersion="${parts[0]}-{version.suffix}-${parts[1]}" -DgenerateBackupPoms=false
+        mvn versions:set -DnewVersion="${parts[0]}-\${version.suffix}-${parts[1]}" -DgenerateBackupPoms=false
         
     - name: Git Commit and Push
       run: |
