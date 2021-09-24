@@ -25,7 +25,7 @@ We encourage you to read the [contribution instructions by GitHub](https://guide
 
 ## Dependencies and Licenses
 The XDEV Application Framework is released under [GNU Lesser General Public License version 3](https://www.gnu.org/licenses/lgpl-3.0.en.html) aka LGPL 3<br/>
-View the [summary of all dependencies online](https://xdev-software.github.io/xapi-fx/dependencies/)
+View the [summary of all dependencies (for Java 11 variant) online](https://xdev-software.github.io/xapi-fx/dependencies/)
 
 ## Releasing [![Build](https://img.shields.io/github/workflow/status/xdev-software/xapi-fx/Release?label=Release)](https://github.com/xdev-software/xapi-fx/actions/workflows/release.yml)
 Consider doing a [test-deployment](https://github.com/xdev-software/xapi-fx/actions/workflows/test-deploy.yml?query=branch%3Adevelop) before actually releasing.
