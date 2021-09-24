@@ -285,13 +285,11 @@
 		</plugins>
 	</build>
 
+	<!-- Do not make any profile active by default or it breaks the release!!! (versions:set) -->
 	<profiles>
 
 		<profile>
 			<id>java8</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<properties>
 				<java.runtime.version>[1.8,9)</java.runtime.version>
 				<version.suffix>java8</version.suffix>
