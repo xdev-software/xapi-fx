@@ -162,7 +162,7 @@ jobs:
         java-package: jdk
 
     - name: Build dependencies/licenses files
-      run: mvn -B project-info-reports:dependencies -Pjava8
+      run: mvn -B project-info-reports:dependencies -Pjava11
 
     - name: Upload licenses - Upload Artifact
       uses: actions/upload-artifact@v2
