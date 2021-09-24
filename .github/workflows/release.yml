@@ -119,7 +119,7 @@ jobs:
       # See https://issues.sonatype.org/browse/OSSRH-66257?focusedCommentId=1036973&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-1036973
     - if: ${{ matrix.java == 17 }}
       run: |
-        export MAVEN_OPTS="--add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED"
+        echo 'MAVEN_OPTS=--add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED' >> $GITHUB_ENV
     
     - name: Set up JDK and configure for ossrh
       uses: actions/setup-java@v2
