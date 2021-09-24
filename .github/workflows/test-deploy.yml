@@ -39,8 +39,6 @@ jobs:
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
         gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
 
-    - run: echo $MAVEN_OPTS
-
     - name: Publish to Apache Maven Central
       run: mvn -B deploy -Possrh,java${{ matrix.java }}
       env:
