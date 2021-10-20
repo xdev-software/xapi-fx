@@ -317,7 +317,7 @@
 				<dependency>
 					<groupId>org.openjfx</groupId>
 					<artifactId>javafx-web</artifactId>
-					<version>11.0.2</version>
+					<version>17.0.1</version>
 				</dependency>
 			</dependencies>
 		</profile>
@@ -338,7 +338,7 @@
 				<dependency>
 					<groupId>org.openjfx</groupId>
 					<artifactId>javafx-web</artifactId>
-					<version>17</version>
+					<version>17.0.1</version>
 				</dependency>
 			</dependencies>
 		</profile>
