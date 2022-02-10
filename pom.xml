@@ -178,9 +178,6 @@
 							<goal>update-file-header</goal>
 						</goals>
 						<phase>process-sources</phase>
-						<configuration>
-							<canUpdateCopyright>true</canUpdateCopyright>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>
