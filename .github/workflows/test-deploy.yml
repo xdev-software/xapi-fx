@@ -28,7 +28,7 @@ jobs:
         echo 'MAVEN_OPTS=--add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED' >> $GITHUB_ENV
     
     - name: Set up JDK and configure for ossrh
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with: # running setup-java again overwrites the settings.xml
         distribution: ${{ matrix.distribution }}
         java-version: ${{ matrix.java }}
