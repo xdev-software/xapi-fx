@@ -19,7 +19,7 @@ jobs:
             distribution: zulu
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     
       # Fixes OSSRH-66257
       # See https://issues.sonatype.org/browse/OSSRH-66257?focusedCommentId=1036973&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-1036973
