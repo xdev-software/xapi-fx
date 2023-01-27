@@ -12,7 +12,7 @@ on:
       - '**.md'
 
 jobs:
-  build_lts:
+  build:
     runs-on: ubuntu-latest
     
     strategy:
@@ -57,8 +57,9 @@ jobs:
           echo "::error::Unstaged changes detected. Locally try running: git clean -ffdx && mvn -B clean verify"
           exit 1
         fi
-        
+
     - uses: actions/upload-artifact@v3
       with:
-        name: jars-lts-${{ matrix.java }}
+        name: jars-java-${{ matrix.java }}
         path: target/*.jar
+        if-no-files-found: error
