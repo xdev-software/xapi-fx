@@ -25,7 +25,7 @@ import javafx.application.Platform;
  * and general UI (user interface) handling.
  * </p>
  *
- * @since 1.0
+ * @since 6.0
  *
  * @author XDEV Software
  */
