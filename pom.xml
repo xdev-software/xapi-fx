@@ -201,7 +201,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
-                <version>1.2.7</version>
+                <version>1.4.1</version>
                 <configuration>
                     <updatePomFile>true</updatePomFile>
                     <!-- This does the magic -->
