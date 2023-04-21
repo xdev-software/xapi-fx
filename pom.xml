@@ -252,7 +252,7 @@
                 <dependency>
                     <groupId>org.openjfx</groupId>
                     <artifactId>javafx-swing</artifactId>
-                    <version>11.0.2</version>
+                    <version>17.0.7</version>
                 </dependency>
                 <dependency>
                     <groupId>org.openjfx</groupId>
@@ -273,7 +273,7 @@
                 <dependency>
                     <groupId>org.openjfx</groupId>
                     <artifactId>javafx-swing</artifactId>
-                    <version>17.0.2</version>
+                    <version>17.0.7</version>
                 </dependency>
                 <dependency>
                     <groupId>org.openjfx</groupId>
