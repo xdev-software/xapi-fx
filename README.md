@@ -4,8 +4,6 @@
 # XDEV Application Framework JavaFX
 This is the JavaFX part of the XDEV Application Framework. All other components are in https://github.com/xdev-software/xapi
 
-This repository has a branch for every supported Java LTS version. Make sure to get the version the matches your Java runtime.
-
 ## XDEV-IDE
 The [XDEV(-IDE)](https://xdev.software/en/products/swing-builder) is a visual Java development environment for fast and easy application development (RAD - Rapid Application Development). XDEV differs from other Java IDEs such as Eclipse or NetBeans, focusing on programming through a far-reaching RAD concept. The IDE's main components are a Swing GUI builder, the XDEV Application Framework and numerous drag-and-drop tools and wizards with which the functions of the framework can be integrated.
 
