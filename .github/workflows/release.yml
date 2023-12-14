@@ -99,7 +99,7 @@ jobs:
     needs: [prepare_release]
     strategy:
       matrix:
-        java: [11, 17]
+        java: [11, 17, 21]
         java-package: [jdk]
         distribution: [temurin]
         include: 
