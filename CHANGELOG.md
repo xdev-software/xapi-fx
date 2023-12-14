@@ -1,3 +1,7 @@
+## 6.0.3
+* Added (experimental) support for Java 21
+* Updated dependencies
+
 ## 6.0.2
 * Java 17: Updated ``org.openjfx`` dependencies to ``17.0.2``
 * Updated maven plugins

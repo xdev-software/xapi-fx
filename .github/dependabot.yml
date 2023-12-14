@@ -22,4 +22,5 @@ updates:
   open-pull-requests-limit: 10
   ignore:
   - dependency-name: "org.openjfx:*"
-    versions: ">=18.x"
+    versions: 
+      - ">=22.x"
